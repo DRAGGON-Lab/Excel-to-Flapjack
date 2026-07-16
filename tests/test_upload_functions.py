@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from excel2flapjack.mainNew import X2F
+from excel2flapjack.main import X2F
 import pandas as pd
 import test_xcel_file
 
@@ -48,8 +48,10 @@ class TestX2FStudyUpload(unittest.TestCase):
         }
 
         # patch the Flapjack class and start the patcher
-        self.mock_fj_patcher = patch('excel2flapjack.mainNew.Flapjack')
+        self.mock_fj_patcher = patch('excel2flapjack.main.Flapjack')
         self.mock_fj = self.mock_fj_patcher.start()
+        self.mock_excel_patcher = patch('excel2flapjack.main.pd.ExcelFile')
+        self.mock_excel_patcher.start().return_value = self.xls
 
         # Setup mock Flapjack instance
         self.mock_fj = self.mock_fj.return_value
@@ -75,6 +77,7 @@ class TestX2FStudyUpload(unittest.TestCase):
 
     def tearDown(self):
         self.mock_fj_patcher.stop()
+        self.mock_excel_patcher.stop()
 
         
     def test_studies_upload(self):

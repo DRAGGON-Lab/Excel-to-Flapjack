@@ -104,7 +104,7 @@ class X2F:
             obj_df['object'] = obj
             obj_df['flapjackid'] = ''
 
-            self.df = self.df.append(obj_df)
+            self.df = pd.concat([self.df, obj_df])
 
     
     def upload_studies(self, overwrite=False, confirm=False):
@@ -351,7 +351,6 @@ class X2F:
         for model in self.del_map:
             for id in self.del_map[model]:
                 self.fj.delete(model, id, confirm=False)
-
 
 
 

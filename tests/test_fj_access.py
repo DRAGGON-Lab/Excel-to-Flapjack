@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import Mock, patch
 import sys
 import pandas as pd
-from excel2flapjack.mainNew import X2F
+from excel2flapjack.main import X2F
 
 # don't need any of this because we're using mock and patch
 '''
@@ -17,12 +17,13 @@ fj_pass = "coco33"
 class TestX2FInit(unittest.TestCase):
     # decorator replaces Flapjack class with a mock
     # any instantiation of Flapjack within the test will use this mock instead of the real class
-    @patch('excel2flapjack.mainNew.Flapjack')
+    @patch('excel2flapjack.main.Flapjack')
+    @patch('excel2flapjack.main.pd.ExcelFile')
     # patched Flapjack class is passed into the test method as the parameter MockFlapjack
-    def test_init_method(self, MockFlapjack):
+    def test_init_method(self, MockExcelFile, MockFlapjack):
         # Create a mock ExcelFile object to simulate a pd.ExcelFile
-        # spec argument ensures that the mock only allows access to attributes and methods that exist on a pd.ExcelFile
-        mock_xls = Mock(spec=pd.ExcelFile)
+        mock_xls = Mock()
+        MockExcelFile.return_value = mock_xls
         print(mock_xls)
         
         # MockFlapjack.return_value is used to specify the mock object that should be returned whenever the Flapjack class is instantiated

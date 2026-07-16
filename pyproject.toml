@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "excel2flapjack"
+version = "1.1.0"
+description = "Upload Excel resources to Flapjack"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "BSD-3-Clause"
+authors = [
+  {name = "SynBioDex"},
+]
+dependencies = [
+  "pyflapjack>=1.1.1",
+  "numpy>=1.26.0",
+  "scipy>=1.11.0",
+  "pandas>=2.0.0",
+  "requests>=2.25.1",
+  "tqdm>=4.62.3",
+  "plotly>=5.3.1",
+  "nest_asyncio>=1.5.1",
+  "requests_jwt>=0.5.3",
+  "websockets>=12.0",
+  "matplotlib>=3.10.0",
+  "kaleido>=0.2.1",
+  "openpyxl>=3.0.9",
+]
+
+[project.urls]
+Homepage = "https://github.com/SynBioDex/Experimental-Data-Converter/"
+
+[tool.setuptools.packages.find]
+where = ["src"]

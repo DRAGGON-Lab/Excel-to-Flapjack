@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from excel2flapjack.mainNew import X2F
+from excel2flapjack.main import X2F
 import pandas as pd
 
 
